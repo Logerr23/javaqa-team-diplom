@@ -13,6 +13,28 @@ public class PlayerTest {
 
 
     @Test
+    public void shouldAddPlayedTimeIfOneGame() {
+
+        player.installGame(game1);
+        player.play(game1, 3);
+
+        int expected = 4;
+        int actual = player.play(game1, 1);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddPlayedTimeIfTwoGame() {
+        player.installGame(game2);
+        player.installGame(game3);
+
+        player.play(game2,2);
+
+        int expected = 1;
+        int actual = player.play(game3, 1);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
     public void shouldSumGenreIfOneGame() {
 
         player.installGame(game1);
@@ -68,7 +90,7 @@ public class PlayerTest {
         player.play(game3, 2);
 
 
-        Game expected = game2;
+        Game expected = game3;
         Game actual = player.mostPlayerByGenre("Стратегия");
 
         Assertions.assertEquals(expected, actual);
