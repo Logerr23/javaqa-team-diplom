@@ -29,7 +29,7 @@ public class PlayerTest {
         player.installGame(game2);
         player.installGame(game3);
         player.play(game2, 3);
-        player.play(game2, 1);
+        player.play(game3, 1);
 
         int expected = 4;
         int actual = player.sumGenre(game2.getGenre());
@@ -59,7 +59,20 @@ public class PlayerTest {
 
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void shouldFindMostPlayerIfSame() {
+        player.installGame(game2);
+        player.installGame(game3);
 
+        player.play(game2, 2);
+        player.play(game3, 2);
+
+
+        Game expected = game2;
+        Game actual = player.mostPlayerByGenre("Стратегия");
+
+        Assertions.assertEquals(expected, actual);
+    }
 
     @Test
     public void shouldFindMostPlayerIfOne() {
@@ -69,6 +82,18 @@ public class PlayerTest {
 
         Game expected = game2;
         Game actual = player.mostPlayerByGenre("Стратегия");
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldFindMostPlayerIfNotDisiredGenre() {
+        player.installGame(game2);
+        player.installGame(game1);
+
+        player.play(game2, 2);
+
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("шутер");
 
         Assertions.assertEquals(expected, actual);
     }
@@ -83,15 +108,24 @@ public class PlayerTest {
     }
 
     @Test
+    public void shouldFindMostPlayerIfNotPlay() {
+        player.installGame(game1);
+
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("шутер");
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldNotInstallAlreadyExistGame() {
         player.installGame(game2);
         player.play(game2, 2);
 
         player.installGame(game2);
-        player.play(game2, 1);
 
         int expected = 3;
-        int actual = player.sumGenre(game2.getGenre());
+        int actual = player.play(game2, 1);
 
         Assertions.assertEquals(expected, actual);
     }
