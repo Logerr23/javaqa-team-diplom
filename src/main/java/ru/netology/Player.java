@@ -22,6 +22,7 @@ public class Player {
     /** добавление игры игроку
     если игра уже была, никаких изменений происходить не должно */
     public void installGame(Game game) {
+
         playedTime.put(game, 0);
     }
 
@@ -31,11 +32,12 @@ public class Player {
     возвращает суммарное количество часов, проигранное в эту игру.
     если игра не была установлена, то надо выкидывать RuntimeException */
     public int play(Game game, int hours) {
-        game.getStore().addPlayTime(name, hours);
+
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            playedTime.put(game, playedTime.get(game) + hours);
+            game.getStore().addPlayTime(getName(), hours);
         } else {
-            playedTime.put(game, hours);
+            throw new RuntimeException ("Игра не установлена");
         }
         return playedTime.get(game);
     }
@@ -57,6 +59,22 @@ public class Player {
     /** Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      Если в игры этого жанра не играли, возвращается null */
     public Game mostPlayerByGenre(String genre) {
-        return null;
+
+        if (playedTime.isEmpty() == true){
+            return null;
+        }
+        Game desiredGame = null;
+        for (Game game : playedTime.keySet()) {
+            if (game.getGenre().equals(genre)) {
+                if(desiredGame == null || playedTime.get(game) > playedTime.get(desiredGame)) {
+                    desiredGame = game;
+                }
+            }
+        }
+        if (playedTime.get(desiredGame) == 0) {
+            return null;
+        } else {
+        return desiredGame;
+        }
     }
 }
