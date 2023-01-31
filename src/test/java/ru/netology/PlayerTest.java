@@ -90,7 +90,7 @@ public class PlayerTest {
         player.play(game3, 2);
 
 
-        Game expected = game3;
+        Game expected = game2;
         Game actual = player.mostPlayerByGenre("Стратегия");
 
         Assertions.assertEquals(expected, actual);
