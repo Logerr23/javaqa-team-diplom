@@ -28,12 +28,13 @@ public class PlayerTest {
         player.installGame(game2);
         player.installGame(game3);
 
-        player.play(game2,2);
+        player.play(game2, 2);
 
         int expected = 1;
         int actual = player.play(game3, 1);
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSumGenreIfOneGame() {
 
@@ -81,6 +82,7 @@ public class PlayerTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldFindMostPlayerIfSame() {
         player.installGame(game2);
@@ -107,6 +109,7 @@ public class PlayerTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldFindMostPlayerIfNotDisiredGenre() {
         player.installGame(game2);
