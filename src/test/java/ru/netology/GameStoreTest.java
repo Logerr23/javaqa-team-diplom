@@ -1,10 +1,8 @@
 package ru.netology;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class GameStoreTest {
     GameStore store = new GameStore();
@@ -15,7 +13,7 @@ public class GameStoreTest {
 
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
-        assertTrue(store.containsGame(game));
+        Assertions.assertTrue(store.containsGame(game));
     }
 
     @Test
@@ -26,10 +24,10 @@ public class GameStoreTest {
         Game game3 = store.publishGame("Нетология Баттл 3", "Гонки");
         Game game4 = store.publishGame("Нетология Баттл 4", "Спорт");
 
-        assertTrue(store.containsGame(game1));
-        assertTrue(store.containsGame(game2));
-        assertTrue(store.containsGame(game3));
-        assertTrue(store.containsGame(game4));
+        Assertions.assertTrue(store.containsGame(game1));
+        Assertions.assertTrue(store.containsGame(game2));
+        Assertions.assertTrue(store.containsGame(game3));
+        Assertions.assertTrue(store.containsGame(game4));
     }
 
     @Test
@@ -40,8 +38,8 @@ public class GameStoreTest {
         Game game3 = store.publishGame("Та же игра", "тот же жанр");
         Game game4 = store.publishGame("Нетология Баттл 4", "Спорт");
 
-        assertTrue(store.containsGame(game2));
-        assertFalse(store.containsGame(game3));
+        Assertions.assertTrue(store.containsGame(game2));
+        Assertions.assertFalse(store.containsGame(game3));
     }
 
 
@@ -55,7 +53,7 @@ public class GameStoreTest {
         int expected = 11;
         int actual = store.getSumPlayedTime();
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -69,7 +67,7 @@ public class GameStoreTest {
         String expected = "a";
         String actual = store.getMostPlayer();
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -83,7 +81,7 @@ public class GameStoreTest {
         String expected = "a";
         String actual = store.getMostPlayer();
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -93,7 +91,7 @@ public class GameStoreTest {
         String expected = null;
         String actual = store.getMostPlayer();
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
     @Test
@@ -106,7 +104,7 @@ public class GameStoreTest {
         int expected = 17;
         int actual = store.getSumPlayedTime();
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
 
@@ -116,7 +114,7 @@ public class GameStoreTest {
         int expected = 0;
         int actual = store.getSumPlayedTime();
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
 
